@@ -11,7 +11,20 @@
 			<tr>
 				<td>{{ t.content }}</td>
 				<td>{{ t.time }} </td>
-				<td>{{ t.status }}</td>
+				<td>
+					{% if t.status == 0 %}
+					<a href="/done/{{ t.id }}" class="btn btn-primary">Done</a>
+					{% else %}
+					<a href="/undone/{{ t.id }}" class="btn btn-primary">Undone</a>
+					{% endif %}
+				</td>
 			</tr>
 		{% endfor %}
 	</tbody>
+
+	<form class="input-group" action="/add" method="post">
+		<input  class="from-control" id="content" name="content" type="text" value="">
+		<span class="input-group-btn">
+			<button class="btn btn-primary" type="submit">Add</button>
+		</span>
+	</form>
